@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cielito Lindo - Baby Shower</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* COLORES CLAVE:
+           - Azul Principal: #375D91 (Similar al Talavera)
+           - Blanco: #FFFFFF
+        */
+        
+    /* COLORES CLAVE:
+        - Azul Principal: #375D91 (Similar al Talavera)
+        - Blanco: #FFFFFF
+    */
+
+    /* 1. Estilos Generales y Fondo */
+    body {
+        font-family: 'Playfair Display', serif; 
+        background-color: #f0f0f0; 
+        color: #333;
+        text-align: center;
+        padding: 10px;
+        margin: 0;
+        overflow-x: hidden;
+    }
+    
+    /* 2. Contenedor Principal (Tarjeta) */
+    .container {
+        max-width: 420px;
+        margin: 20px auto;
+        background-color: #fff; /* Fondo blanco si el marco no cubre todo */
+        padding: 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        border-radius: 15px; /* Bordes más redondeados para suavizar */
+        
+        /* Animación de entrada */
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInSlide 1s forwards ease-out;
+        position: relative; 
+    }
+    
+    /* 3. Marco decorativo (Simulando el patrón del azulejo) */
+    .ornamental-frame {
+        /* --- ESTILO CRÍTICO: IMAGEN DE FONDO DE LA TARJETA --- */
+        background-image: url('cielito lindo.jpg'); /* Tu imagen de marco de talavera */
+        background-size: cover; /* Ajusta la imagen para que cubra todo el marco */
+        background-position: center center;
+        background-repeat: no-repeat;
+        /* NO SE USA background-attachment: fixed, por lo que SCROLL con el texto es el COMPORTAMIENTO PREDETERMINADO. */
+        /* ----------------------------------------------------- */
+
+        border: 8px solid #375D91; /* Borde exterior azul para enmarcar */
+        border-radius: 15px;
+        padding: 0; /* Quitamos padding aquí y lo movemos al content-area */
+        
+        /* Aseguramos que la altura del marco se ajuste al contenido */
+        min-height: 500px; 
+    }
+
+    /* 4. Contenido Interior (El lienzo para el texto) */
+    .content-area {
+        /* Usamos un fondo semitransparente para que la imagen se vea, pero el texto sea legible */
+        background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-opaco */
+        padding: 40px 25px 30px;
+        
+        /* Creamos el efecto de arco en el borde superior del contenido */
+        border-radius: 7px 7px 50% 50% / 7px 7px 50px 50px; /* Ajuste para el arco y esquinas */
+        
+        position: relative;
+        z-index: 1; 
+    }
+
+    /* 5. Títulos y Textos */
+    h1 {
+        font-family: 'Dancing Script', cursive; 
+        color: #375D91;
+        font-size: 3.5em; 
+        margin: -25px 0 0; 
+        line-height: 1.1;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Sombra para resaltar sobre el fondo semi-opaco */
+        animation: pulseText 1.5s infinite alternate; 
+    }
+    
+    .subtitle {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700; /* Lo hacemos más fuerte para legibilidad */
+        font-size: 0.9em;
+        color: #6488a8; 
+        margin: 5px 0 15px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background-color: rgba(255, 255, 255, 0.5); /* Fondo para el subtítulo */
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    /* Estilo para los párrafos de la invitación */
+    .content-area > p { /* Selecciona solo los párrafos directamente en content-area */
+        font-size: 1em;
+        margin: 10px 0;
+        color: #333; 
+        background-color: transparent; /* Párrafos sin fondo ya que el content-area tiene uno */
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    .name-highlight {
+        font-family: 'Dancing Script', cursive;
+        color: #8B0000; /* Color rojo para destacar los nombres */
+        font-size: 2.2em;
+        margin: 10px 0 20px;
+        display: block;
+        line-height: 1.2;
+        opacity: 0;
+        animation: scaleIn 0.8s 0.5s forwards ease-out;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Detalles de Fecha/Hora/Lugar */
+    .details {
+        background-color: #e3f2fd; /* Fondo azul muy claro para resaltar la sección */
+        border: 2px solid #375D91; /* Borde sólido azul */
+        border-radius: 10px;
+        padding: 15px;
+        margin: 25px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .details p {
+        font-size: 1em;
+        color: #333; 
+        line-height: 1.4;
+        margin: 8px 0;
+        font-weight: 400;
+        opacity: 1; /* Quitamos la animación de opacidad que estaba en .details p */
+        animation: none;
+    }
+    
+    .details strong {
+        font-weight: 700;
+        color: #8B0000; /* Rojo para la fecha/hora */
+        display: block; /* Asegura que ocupe su propia línea */
+        font-size: 1.1em;
+    }
+    .details a {
+        color: #375D91;
+        text-decoration: none;
+        font-weight: 700;
+        display: block; /* Para centrar y dar espacio al enlace de ubicación */
+        margin-top: 5px;
+    }
+    
+    /* Botón de RSVP */
+    .rsvp a {
+        display: inline-block;
+        background-color: #375D91; 
+        color: white;
+        padding: 12px 30px;
+        text-decoration: none;
+        border-radius: 30px;
+        margin-top: 35px;
+        font-weight: 700;
+        font-size: 1em;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        
+        opacity: 0;
+        animation: bounceIn 1s 1s forwards;
+    }
+    
+    .rsvp a:hover {
+        background-color: #4a75a9; 
+        transform: scale(1.05);
+    }
+    
+    .note {
+        font-size: 0.8em; 
+        margin-top: 15px; 
+        color: #666; /* Más oscuro para contraste */
+    }
+
+    /* 6. Animaciones Keyframes */
+    /* ... Las animaciones se mantienen igual ... */
+    @keyframes fadeInSlide {
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulseText {
+        from { color: #375D91; }
+        to { color: #8B0000; }
+    }
+    
+    @keyframes scaleIn {
+        to { opacity: 1; transform: scale(1); }
+        from { opacity: 0; transform: scale(0.8); }
+    }
+
+    @keyframes bounceIn {
+        0% { transform: scale(0.1); opacity: 0; }
+        60% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+        /* 1. Estilos Generales y Fondo */
+        body {
+            font-family: 'Playfair Display', serif; 
+            background-color: #f0f0f0; 
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        /* 2. Contenedor Principal (Tarjeta) */
+        .container {
+            max-width: 420px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            border-radius: 5px; /* Bordes ligeramente redondeados */
+            
+            /* Animación de entrada */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlide 1s forwards ease-out;
+            position: relative; /* Para posicionar el borde ornamental */
+        }
+        
+        /* 3. Marco decorativo (Simulando el patrón del azulejo) */
+        .ornamental-frame {
+            background-color: #375D91; /* Fondo principal azul */
+            /* Imagen de patrón Talavera repetida para simular el borde */
+            background-image: url('cielito lindo.jpg'); /* Patrón de azulejo Talavera repetido */
+            background-size: 50px; /* Tamaño de la repetición del patrón */
+            background-repeat: repeat;
+            padding: 10px; /* Borde interior de color sólido */
+            border: 8px solid #375D91; /* Borde exterior azul para enmarcar */
+            border-radius: 5px;
+        }
+
+        /* 4. Contenido Interior (El lienzo blanco) */
+        .content-area {
+            background-color: #FFFFFF;
+            padding: 40px 25px 30px;
+            
+            /* Creamos el efecto de arco en el borde superior del contenido */
+            border-radius: 0 0 50% 50% / 0 0 50px 50px; 
+            
+            /* Posicionamos el arco central "Cielito Lindo" */
+            position: relative;
+            z-index: 1; /* Para que esté sobre el marco ornamental */
+        }
+
+        /* 5. Títulos y Textos */
+        h1 {
+            font-family: 'Dancing Script', cursive; 
+            color: #375D91;
+            font-size: 3.5em; /* Tamaño grande como en la imagen */
+            margin: -25px 0 0; /* Subimos el título para que esté dentro del "arco" */
+            line-height: 1.1;
+            animation: pulseText 1.5s infinite alternate; /* Sutilmente animado */
+        }
+        
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 0.8em;
+            color: #6488a8; /* Azul más claro */
+            margin: 5px 0 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .name-highlight {
+            font-family: 'Dancing Script', cursive;
+            color: #375D91; 
+            font-size: 2.2em;
+            margin: 10px 0 20px;
+            display: block;
+            line-height: 1.2;
+            opacity: 0;
+            animation: scaleIn 0.8s 0.5s forwards ease-out;
+        }
+
+        /* Detalles de Fecha/Hora/Lugar */
+        .details p {
+            font-size: 1em;
+            color: #555; 
+            line-height: 1.4;
+            margin: 8px 0;
+            font-weight: 400;
+            opacity: 0;
+            animation: scaleIn 0.8s 0.7s forwards ease-out; 
+        }
+        .details strong {
+            font-weight: 700;
+            color: #375D91; 
+        }
+        
+        /* Botón de RSVP */
+        .rsvp a {
+            display: inline-block;
+            background-color: #375D91; /* Azul sólido */
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 35px;
+            font-weight: 700;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            
+            /* Animación */
+            opacity: 0;
+            animation: bounceIn 1s 1s forwards;
+        }
+        
+        .rsvp a:hover {
+            background-color: #4a75a9; 
+            transform: scale(1.05);
+        }
+        
+        .note {
+            font-size: 0.8em; 
+            margin-top: 15px; 
+            color: #999; 
+        }
+
+        /* 6. Animaciones Keyframes (Mantenidas) */
+        
+        @keyframes fadeInSlide {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulseText {
+            from { color: #375D91; }
+            to { color: #6488a8; }
+        }
+        
+        @keyframes scaleIn {
+            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: scale(0.8); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.1); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ornamental-frame">
+            
+            <div class="content-area">
+                
+                <h1>Cielito lindo</h1>
+                
+                <p class="subtitle">
+                    ✨ ¡El cielo se llena de estrellas! ✨
+                </p>
+                
+                <p style="font-size: 0.9em; margin: 0 0 5px; color: #6488a8;">
+                    Con inmensa alegría y el corazón rebosante de amor, Daniel y laila te invitan a celebrar la dulce espera de su [niño/niña],
+                </p>
+
+                <p style="font-size: 0.9em; margin: 0 0 5px; color: #6488a8;">
+                    Queremos compartir contigo risas, juegos y buenos deseos en este Baby Shower que preparamos con tanto cariño.
+                </p>
+
+                <p style="font-size: 0.8em; margin: 0 0 5px; color: #6488a8;">
+                    ¡Tu presencia es el mejor regalo para nuestro Cielito Lindo!
+                </p>
+    
+                <span class="name-highlight">
+                    ✨ Daniel y Laila ✨
+                </span>
+    
+                <div class="details">
+                    <p>
+                        <strong>SÁBADO, NOVIEMBRE 15TH AT 5PM</strong>
+                    </p>
+                    <p>
+                        <a href="https://maps.app.goo.gl/FfyebW1iyyYFjJEV8" target="ubi event">[Lugar del Evento: 11707N Petersham Dr Houston TX 77031]</a>
+                    </p>
+                    
+                    <p>
+                        <strong>[sorteo de pañales]</strong>
+                    </p>
+
+                    <p>
+                        Por favor trae un paquete de pañales de cualquier tamaño. para participar y poder ganar un premio especial.
+                    </p>
+                </div>
+    
+                <p class="rsvp">
+                    <a href="https://wa.me/18325424065?text=Confirmo%20mi%20asistencia%20al%20Baby%20Shower." target="_blank">
+                        🎉 RSVP A Daniel Etayo AL [+1 (832) 542-4065]
+                    </a>
+                </p>
+                
+                <p class="note">
+                    *Por favor, confírmanos antes del [15 de Noviembre].
+                </p>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
